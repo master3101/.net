@@ -1,0 +1,232 @@
+prac6
+
+
+WebForm1.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+Inherits="Prac6.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+ <style type="text/css">
+ .auto-style1 {
+ text-align: center;
+ }
+ </style>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div class="auto-style1">
+ <asp:Label ID="lbl_WelMsg" runat="server" Font-Bold="True" FontNames="Nunito" Font-Size="XX-Large" Text="Welcome To Railway Ticket Booking
+"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_para" runat="server" Font-Bold="True" FontNames="Nunito" Text="A Easy and Convenient way to book train
+tickets!!"></asp:Label>
+ <br />
+ <br />
+ <asp:Button ID="btn_Con" runat="server" BackColor="#3366FF" FontBold="True" Font-Names="Nunito" ForeColor="White" OnClick="btn_Con_Click"
+Text="Continue" />
+ <br />
+ <br />
+ <br />
+ <asp:Image ID="Image1" runat="server" Height="500px"
+ImageUrl="~/train.png" />
+ </div>
+ </form>
+</body>
+</html>
+WebForm1.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac6
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void btn_Con_Click(object sender, EventArgs e)
+ {
+ Response.Redirect("WebForm2.aspx");
+ }
+ }
+}
+WebForm2.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs"
+Inherits="Prac6.WebForm2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+ <style type="text/css">
+ .auto-style1 {
+ text-align: center;
+ }
+ </style>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div class="auto-style1">
+ <asp:Label ID="lbl_Title" runat="server" Font-Bold="True" FontNames="Nunito" Font-Size="X-Large" Text="Train ticket Booking"></asp:Label>
+ </div>
+ <asp:Button ID="btn_back" runat="server" BorderStyle="None" FontBold="True" Font-Names="Nunito" OnClick="Button1_Click" Text="Home" />
+ <br />
+ <br />
+ <br />
+ <div class="auto-style1">
+ <asp:Label ID="lbl_1N" runat="server" BorderStyle="None" Text="Enter
+1st Passenger Name" Font-Names="Nunito"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:TextBox ID="txt_1N" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito"></asp:TextBox>
+ &nbsp;
+ <asp:TextBox ID="txt_1A" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito" placeholder="Enter Your Age"></asp:TextBox>
+ &nbsp;
+ <asp:CheckBox ID="chk_1AC" runat="server" Font-Bold="True" FontNames="Nunito" Text="AC" />
+ <br />
+ <br />
+ <asp:Label ID="lbl_2N" runat="server" Text="Enter 2nd Passenger Name"
+Font-Names="Nunito"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+ <asp:TextBox ID="txt_2N" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito"></asp:TextBox>
+ &nbsp;
+ <asp:TextBox ID="txt_2A" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito" placeholder="Enter Your Age"></asp:TextBox>
+ &nbsp;&nbsp;
+ <asp:CheckBox ID="chk_2AC" runat="server" Font-Bold="True" FontNames="Nunito" Text="AC" />
+ <br />
+ <br />
+ <asp:Label ID="lbl_3N" runat="server" Text="Enter 3rd Passenger Name"
+Font-Names="Nunito"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+ <asp:TextBox ID="txt_3N" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito"></asp:TextBox>
+ &nbsp;&nbsp;
+ <asp:TextBox ID="txt_3A" runat="server" Height="25px" Width="200px"
+Font-Names="Nunito" placeholder="Enter Your Age"></asp:TextBox>
+ &nbsp;&nbsp;
+ <asp:CheckBox ID="chk_3AC" runat="server" Font-Bold="True" FontNames="Nunito" Text="AC" />
+ </div>
+ <br />
+ <br />
+ <br />
+ <div class="auto-style1">
+ <asp:Button ID="btn_BT" runat="server" Text="Book Tickets"
+BackColor="#3366FF" BorderStyle="None" Font-Bold="True" Font-Names="Nunito"
+ForeColor="White" Height="35px" OnClick="btn_BT_Click" Width="200px" />
+ <br />
+ <br />
+ <br />
+ <br />
+ <asp:Label ID="lbl_P1B" runat="server" FontNames="Nunito"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_P2B" runat="server" FontNames="Nunito"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_P3B" runat="server" FontNames="Nunito"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_TOT" runat="server" FontNames="Nunito"></asp:Label>
+ </div>
+ </form>
+</body>
+</html>
+WebForm2.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac6
+{
+ public partial class WebForm2 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void btn_BT_Click(object sender, EventArgs e)
+ {
+ int P1A = Convert.ToInt32(txt_1A.Text);
+ int P2A = Convert.ToInt32(txt_2A.Text);
+ int P3A = Convert.ToInt32(txt_3A.Text);
+ int P1Bill = 0 , P2Bill = 0 , P3Bill = 0 ;
+ double total = 0, totaltax = 0;
+ if(chk_1AC.Checked && (P1A > 60 || P1A < 5))
+ {
+ P1Bill = 500;
+ }
+ else if(chk_1AC.Checked && (P1A < 60 || P1A > 5))
+ {
+ P1Bill = 1000;
+ }
+ else if (!chk_1AC.Checked && (P1A > 60 || P1A < 5))
+ {
+ P1Bill = 250;
+ }
+ else
+ {
+ P1Bill = 700;
+ }
+ if(chk_2AC.Checked && (P2A > 60 || P2A < 5))
+ {
+ P2Bill = 500;
+ }
+ else if (chk_2AC.Checked && (P2A < 60 || P2A > 5))
+ {
+ P2Bill = 1000;
+ }
+ else if (!chk_2AC.Checked && (P2A > 60 || P2A < 5))
+ {
+ P2Bill = 250;
+ }
+ else
+ {
+ P2Bill = 700;
+ }
+ if (chk_3AC.Checked && (P3A > 60 || P3A < 5))
+ {
+ P3Bill = 500;
+ }
+ else if (chk_3AC.Checked && (P3A < 60 || P3A > 5))
+ {
+ P3Bill = 1000;
+ }
+ else if (!chk_3AC.Checked && (P3A > 60 || P3A < 5))
+ {
+ P3Bill = 250;
+ }
+ else
+ {
+ P3Bill = 700;
+ }
+ total = (P1Bill+P2Bill+P3Bill);
+ totaltax = total + (total*0.04);
+ lbl_P1B.Text = "Passenger 1 Bill: " +P1Bill;
+ lbl_P2B.Text = "Passenger 2 Bill: " +P2Bill;
+ lbl_P3B.Text = "Passenger 3 Bill: " +P3Bill;
+ lbl_TOT.Text = "The total bill is: "+totaltax;
+ txt_1A.Text = String.Empty;
+ txt_2A.Text = String.Empty;
+ txt_3A.Text = String.Empty;
+ txt_1N.Text = String.Empty;
+ txt_2N.Text = String.Empty;
+ txt_3N.Text = String.Empty;
+ chk_1AC.Checked = false;
+ chk_2AC.Checked = false;
+ chk_3AC.Checked = false;
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ Response.Redirect("WebForm1.aspx");
+ }
+ }
+}

@@ -1,0 +1,97 @@
+prac 15
+
+XMLFile.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<CableTV>
+ <Channel Name="Sony Max">
+ <Language>Hindi</Language>
+ <Category>Movies</Category>
+ </Channel>
+ <Channel Name="Star News">
+ <Language>English</Language>
+ <Category>News</Category>
+ </Channel>
+ <Channel Name="Cartoon Network">
+ <Language>Hindi</Language>
+ <Category>Cartoon</Category>
+ </Channel>
+</CableTV>
+
+
+
+
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+Inherits="prac15.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Label ID="lbl_SEL" runat="server" Text="Select"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_LANG" runat="server" Text="Language"></asp:Label>
+ <br />
+ <asp:DropDownList ID="ddl_LANG" runat="server">
+ <asp:ListItem>Hindi</asp:ListItem>
+ <asp:ListItem>English</asp:ListItem>
+ </asp:DropDownList>
+ <br />
+ <br />
+ <asp:Label ID="lbl_CAT" runat="server" Text="Category"></asp:Label>
+ <br />
+ <asp:DropDownList ID="ddl_CAT" runat="server">
+ <asp:ListItem>News</asp:ListItem>
+ <asp:ListItem>Cartoon</asp:ListItem>
+ <asp:ListItem>Movies</asp:ListItem>
+ </asp:DropDownList>
+ <br />
+ <br />
+ <asp:Button ID="btn_SUB" runat="server" OnClick="btn_SUB_Click"
+Text="Submit" />
+ <br />
+ <br />
+ <br />
+ <br />
+ <asp:Label ID="lbl_result" runat="server"></asp:Label>
+ </div>
+ </form>
+</body>
+</html>
+WebForm1.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
+namespace prac15
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void btn_SUB_Click(object sender, EventArgs e)
+ {
+ XmlDocument doc = new XmlDocument();
+ lbl_result.Text = "";
+
+doc.Load("C:\\Users\\shubh\\source\\repos\\prac15\\prac15\\XMLFile1.xml");
+ foreach(XmlElement element in doc.DocumentElement.ChildNodes )
+ {
+ string ch;
+ ch = element.GetAttribute("Name");
+ if((element.ChildNodes[1].InnerText==ddl_CAT.Text) &&
+(element.ChildNodes[0].InnerText == ddl_LANG.Text)){
+ lbl_result.Text += ch + "<br>";
+ }
+ }
+ }
+ }
+}

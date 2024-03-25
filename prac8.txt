@@ -1,0 +1,56 @@
+prac 8 
+
+Site1.Master:
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs"
+Inherits="Prac8.Site1" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+ <title></title>
+ <asp:ContentPlaceHolder ID="head" runat="server">
+ </asp:ContentPlaceHolder>
+ <style type="text/css">
+ .auto-style1 {
+ width: 100%;
+ }
+ </style>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <table class="auto-style1">
+ <tr>
+ <td>
+
+ <asp:Image ID="Image2" runat="server" Height="250px"
+ImageUrl="~/ad2.jpg" />
+
+ </td>
+ </tr>
+ <tr>
+ <td><asp:ContentPlaceHolder ID="ContentPlaceHolder1"
+runat="server"></asp:ContentPlaceHolder>
+ <h2> Welcome To My HomePage</h2>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <asp:Image ID="Image1" runat="server" Height="250px"
+ImageUrl="~/ad3.jpg" />
+ </td>
+ </tr>
+ </table>
+ </div>
+ </form>
+</body>
+</html>
+
+
+WebForm1.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Prac8.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+</asp:Content>

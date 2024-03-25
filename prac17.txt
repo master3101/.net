@@ -1,0 +1,73 @@
+prac 17
+
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+Inherits="prac17.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <asp:ScriptManager ID="ScriptManager1"
+runat="server"></asp:ScriptManager><br />
+ <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+ <ContentTemplate>
+ <asp:Label ID="lblMSG" runat="server" ></asp:Label><br /> <br />
+ <asp:Label ID="lblRUN" runat="server" ></asp:Label><br /><br />
+ <asp:Timer ID="Timer1" runat="server" Interval="1000"
+OnTick="Timer1_Tick"></asp:Timer>
+ </ContentTemplate>
+ </asp:UpdatePanel>
+ <br />
+ <br />
+ <br />
+ <br />
+ <br />
+ </form>
+</body>
+</html>
+
+
+
+WebForm1.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace prac17
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Timer1_Tick(object sender, EventArgs e)
+ {
+ try
+ {
+ SqlConnection con = new SqlConnection("Data
+Source=Shubham\\SQLEXPRESS;Initial Catalog=pracs;Integrated Security=True;");
+ con.Open();
+ SqlCommand cmd = new SqlCommand();
+ cmd.Connection = con;
+ cmd.CommandText = "select max(matchID) from match1";
+ int it = Convert.ToInt32(cmd.ExecuteScalar());
+ cmd.CommandText = "select matchScore from match1 where matchID="+ it;
+ SqlDataReader ad;
+ ad = cmd.ExecuteReader();
+ ad.Read();
+ lblRUN.Text = ad[0].ToString();
+ con.Close();
+ }
+ catch(Exception ex)
+ {
+ lblMSG.Text = ex.ToString();
+ }
+ }
+ }
+} 

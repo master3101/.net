@@ -1,0 +1,169 @@
+prac 14
+
+WebForm1.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+Inherits="Prac14.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Label ID="lbl_SelThe" runat="server" Text="Select a
+theatre:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+ <br />
+ <asp:ListBox ID="lx_ICNP" runat="server">
+ <asp:ListItem>IMAX</asp:ListItem>
+ <asp:ListItem>Cinepolis</asp:ListItem>
+ <asp:ListItem>INOX</asp:ListItem>
+ <asp:ListItem>PVR</asp:ListItem>
+ </asp:ListBox>
+ <br />
+ <br />
+ <br />
+ <br />
+ <br />
+ <asp:LinkButton ID="lb_CHTN" runat="server"
+OnClick="lb_CHTN_Click">Click Here To Navigate</asp:LinkButton>
+ <br />
+ </div>
+ </form>
+</body>
+</html>
+WebForm1.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac14
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void lb_CHTN_Click(object sender, EventArgs e)
+ {
+ Session["Theatre"] = lx_ICNP.Text;
+ Response.Redirect("WebForm2.aspx");
+ }
+ }
+}
+WebForm2.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs"
+Inherits="Prac14.WebForm2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <br />
+ <asp:Table ID="tb1" runat="server" BorderStyle="Solid" CellPadding="5"
+CellSpacing="5" GridLines="Both"></asp:Table>
+ </div>
+ </form>
+</body>
+</html>
+WebForm2.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac14
+{
+ public partial class WebForm2 : System.Web.UI.Page
+ {
+
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ String th;
+ TableCell c1 = new TableCell();
+ TableCell c2 = new TableCell();
+ TableCell c3 = new TableCell();
+ TableCell c4 = new TableCell();
+ TableCell c5 = new TableCell();
+ TableCell c6 = new TableCell();
+ TableCell c7 = new TableCell();
+ TableCell c8 = new TableCell();
+ TableRow r1 = new TableRow();
+ TableRow r2 = new TableRow();
+ c1.Text = "Show Timings";
+ c2.Text = "09:00 AM";
+ c3.Text = "12:00 PM";
+ c4.Text = "05:00 PM";
+ tb1.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Hanu Man";
+ c7.Text = "KGF Chapter 2";
+ c8.Text = "Salaar";
+ tb1.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ th = Convert.ToString(Session["Thetre"]);
+ if (th == "IMAX")
+ {
+ if (Cache["IMAX"] == null)
+ {
+ Cache.Insert("IMAX", tb1, null, DateTime.Now.AddSeconds(30),
+TimeSpan.Zero);
+ }
+ else
+ {
+ Response.Write("Reading From Cache");
+ }
+ }
+ else if (th == "Cinepolis")
+ {
+ if (Cache["Cinepolis"] == null)
+ {
+ Cache.Insert("Cinepolis", tb1, null,
+DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+ }
+ else
+ {
+ Response.Write("Reading From Cache");
+ }
+ }
+ else if (th == "INOX")
+ {
+ if (Cache["INOX"] == null)
+ {
+ Cache.Insert("INOX", tb1, null, DateTime.Now.AddSeconds(30),
+TimeSpan.Zero);
+ }
+ else
+ {
+ Response.Write("Reading From Cache");
+ }
+ }
+ else
+ {
+ if (Cache["PVR"] == null)
+ {
+ Cache.Insert("PVR", tb1, null, DateTime.Now.AddSeconds(30),
+TimeSpan.Zero);
+ }
+ else
+ {
+ Response.Write("Reading From Cache");
+ }
+ }
+ }
+ }
+}

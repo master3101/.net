@@ -1,0 +1,311 @@
+prac 9
+
+
+NewsSurvey.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewsSurvey.aspx.cs"
+Inherits="practical6.NewsSurvey" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+.auto-style2 {
+height: 26px;
+}
+</style>
+</head><body>
+<form id="form1" runat="server"><div>
+<table class="auto-style1">
+<tr> <td>Name :
+<asp:TextBox ID="txtName" runat="server"></asp:TextBox> </td>
+<td>&nbsp;</td></tr> <tr><td>
+<asp:RequiredFieldValidator ID="nameValidator" runat="server"
+ControlToValidate="txtName" ErrorMessage="Please Enter your name"
+ForeColor="Red"></asp:RequiredFieldValidator>
+</td> <td>&nbsp;</td></tr><tr><td>Age :
+<asp:TextBox ID="txtAge" runat="server"></asp:TextBox>
+</td><td>&nbsp;</td></tr><tr><td>
+<asp:RangeValidator ID="ageValidator" runat="server"
+ControlToValidate="txtAge" ErrorMessage="Your age is less then 18" ForeColor="Red"
+MaximumValue="99" MinimumValue="18"></asp:RangeValidator>
+</td></tr> <tr> <td>Email :
+<asp:TextBox ID="txtEmail" runat="server"></asp:TextBox> </td>
+<td>&nbsp;</td></tr><tr> <td>
+<asp:RegularExpressionValidator ID="emailExpressionValidator" runat="server"
+ControlToValidate="txtEmail" ErrorMessage="Enter a valid email" ForeColor="Red"
+ValidationExpression="\w+([-
++.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+&nbsp;
+<asp:RequiredFieldValidator ID="emailValiator" runat="server"
+ControlToValidate="txtEmail" ErrorMessage="Please enter your Email "
+ForeColor="Red"></asp:RequiredFieldValidator></td>
+<td>&nbsp;</td>
+</tr> <tr>
+<td class="auto-style2"></td>
+<td class="auto-style2"></td>
+</tr> <tr>
+<td>
+<asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click"
+Text="Submit" />
+</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr> <tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr></table> </div></form>
+</body>
+</html>
+
+
+
+NewsSurvey.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace practical6
+{
+public partial class NewsSurvey : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+}
+protected void btnSubmit_Click(object sender, EventArgs e)
+{
+String name = txtName.Text;
+String age = txtAge.Text;
+String email = txtEmail.Text;
+Session["name"] = name;
+Session["age"] = age;
+Session["email"] = email;
+Response.Redirect("SportsPlayer.aspx");
+}
+}
+
+
+
+SportsPlayer.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SportsPlayer.aspx.cs"
+Inherits="practical6.SportsPlayer" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<table class="auto-style1"><tr>
+<td>Select your favrite sports person :</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;Select
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:DropDownList ID="ddlPlayers" runat="server">
+<asp:ListItem>ABC</asp:ListItem>
+<asp:ListItem>DEF</asp:ListItem>
+<asp:ListItem>GHI</asp:ListItem>
+<asp:ListItem>JKL</asp:ListItem>
+</asp:DropDownList>
+&nbsp;<table class="auto-style1">
+<tr><td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr><tr>
+<td>
+<asp:Button ID="btnNext" runat="server" OnClick="btnNext_Click" Text="Next" /></td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+</table></td><td>&nbsp;</td></tr>
+</table></div> </form>
+</body>
+</html>
+
+
+
+SportsPlayer.aspx.cs
+protected void btnNext_Click(object sender, EventArgs e)
+{
+Response.Redirect("FavWriter.aspx");
+}
+
+
+
+FavWriter.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FavWriter.aspx.cs"
+Inherits="practical6.FavWriter" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+.auto-style2 {
+height: 26px;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+<table class="auto-style1">
+<tr><td>Select the best writer :</td>
+<td>&nbsp;</td>
+</tr><tr> <td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>Select :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:DropDownList ID="ddlWriter" runat="server">
+<asp:ListItem>MNO</asp:ListItem>
+<asp:ListItem>PQR</asp:ListItem>
+<asp:ListItem>STU</asp:ListItem>
+<asp:ListItem>VWX</asp:ListItem>
+</asp:DropDownList>
+</td><td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td class="auto-style2"></td>
+<td></tr><tr>
+<td>
+<asp:Button ID="btnNext" runat="server" OnClick="btnNext_Click" Text="Next" /> </td>
+<td>&nbsp;</td></tr> <tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr></table><div></div> </form>
+</body>
+</html>
+
+
+FavWriter.aspx.cs :
+protected void btnNext_Click(object sender, EventArgs e)
+{
+Response.Redirect("SelecMinister.aspx");
+}
+
+
+
+
+SelecMinister.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelecMinister.aspx.cs"
+Inherits="practical6.SelecMinister" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+</style></head<body>
+<form id="form1" runat="server">
+<div>
+Select the best minister :<table class="auto-style1">
+<tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr> <tr>
+<td>Select :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:DropDownList ID="ddlMinister" runat="server">
+<asp:ListItem>HVB</asp:ListItem>
+<asp:ListItem>KVF</asp:ListItem>
+<asp:ListItem Value="KMD"></asp:ListItem>
+<asp:ListItem>JKM</asp:ListItem>
+</asp:DropDownList></td>
+<td>&nbsp;</td></tr> <tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr> <tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr> <td>
+<asp:Button ID="btnNext" runat="server" OnClick="btnNext_Click" Text="Next"
+/></td>
+<td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+</table></div></form></body>
+</html>
+
+
+SelecMinister.aspx.cs
+protected void btnNext_Click(object sender, EventArgs e)
+{
+Response.Redirect("ThankYou.aspx");
+}
+
+
+
+ThankYou.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ThankYou.aspx.cs"
+Inherits="practical6.ThankYou" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<style type="text/css">
+.auto-style1 {
+width: 100%;
+}
+</style>
+</head>
+<body>
+<form id="form1" runat="server">
+Thank for partecipating our survey<table class="auto-style1">
+<tr><td>
+<asp:Label ID="outputName" runat="server" Text="Label"></asp:Label> </td>
+<td>&nbsp;</td>
+</tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+<td>
+<asp:Label ID="outputAge" runat="server" Text="Label"></asp:Label> </td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td><td>&nbsp;</td></tr><tr> <td>
+<asp:Label ID="outputEmail" runat="server"></asp:Label>
+</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td> <td>&nbsp;</td>
+</tr><tr><td>&nbsp;</td><td>&nbsp;</td>
+</tr><tr>
+<td>&nbsp;</td>
+</tr><tr><td>&nbsp;</td>
+<td>&nbsp;</td></tr> <tr> <td>&nbsp;</td>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr></table></form>
+</body>
+</html>
+ThankYou.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace practical6
+{
+public partial class ThankYou : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+outputName.Text = "NAME : " +(String)(Session["name"]);
+outputAge.Text = "AGE : " + (String)(Session["age"]);
+outputEmail.Text = "EMAIL : " + (String)(Session["email"]);
+}
+}
+}

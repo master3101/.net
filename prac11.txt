@@ -1,0 +1,139 @@
+prac 11
+
+Web.sitemap:
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+ <siteMapNode url="~/Home.aspx" title="Home" description="">
+ <siteMapNode url="~/Page1.aspx" title="Page1" description="" />
+ <siteMapNode url="~/Page2.aspx" title="Page2" description="" >
+ <siteMapNode url="~/Page21.aspx" title="Page2.1" description="" >
+ <siteMapNode url="~/Page211.aspx" title="Page2.1.1"
+description="" />
+ </siteMapNode>
+ <siteMapNode url="~/Page22.aspx" title="Page2.2" description="" />
+ <siteMapNode url="~/Page23.aspx" title="Page2.3" description="" />
+ </siteMapNode>
+ <siteMapNode url="~/Page3.aspx" title="Page3" description="" />
+ <siteMapNode url="~/Page4.aspx" title="Page4" description="" />
+ </siteMapNode>
+</siteMap>
+Create Master Page:
+Click project name => add => new item => web form master page
+Site1.Master:
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs"
+Inherits="prac11.Site1" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+ <title></title>
+ <asp:ContentPlaceHolder ID="head" runat="server">
+ </asp:ContentPlaceHolder>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <br />
+ <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+ </asp:SiteMapPath>
+ </asp:ContentPlaceHolder>
+ <br />
+ <br />
+ <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1">
+ </asp:Menu>
+ <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+ <br />
+ <br />
+ <br />
+ <asp:TreeView ID="TreeView1" runat="server"
+DataSourceID="SiteMapDataSource2">
+ </asp:TreeView>
+ <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" />
+ <br />
+ <br />
+ </div>
+ </form>
+</body>
+</html>
+Now,Attach the Master page with WebForms ie. (WebForm with Master Page)
+Home.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="prac11.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Homepage!!"></asp:Label>
+</asp:Content>
+Page1.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page1.aspx.cs" Inherits="prac11.Page1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page1"></asp:Label>
+</asp:Content>
+Page2.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page2.aspx.cs" Inherits="prac11.Page2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 2"></asp:Label>
+</asp:Content>
+Page21.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page21.aspx.cs" Inherits="prac11.Page21" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 2.1"></asp:Label>
+</asp:Content>
+Page211.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page211.aspx.cs" Inherits="prac11.Page211" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 2.1.1"></asp:Label>
+</asp:Content>
+Page22.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page22.aspx.cs" Inherits="prac11.Page22" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 2.2"></asp:Label>
+</asp:Content>
+Page23.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page23.aspx.cs" Inherits="prac11.Page23" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 2.3"></asp:Label>
+</asp:Content>
+Page3.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page3.aspx.cs" Inherits="prac11.Page3" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 3"></asp:Label>
+</asp:Content>
+Page4.aspx:
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+AutoEventWireup="true" CodeBehind="Page4.aspx.cs" Inherits="prac11.Page4" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+runat="server">
+ <asp:Label ID="Label1" runat="server" Text="Welcome to Page 4"></asp:Label>
+</asp:Content>

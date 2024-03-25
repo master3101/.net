@@ -1,0 +1,188 @@
+prac 7
+
+Cricket.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cricket.aspx.cs"
+Inherits="Prac7.cricket" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <h2>Cricket Teams</h2>
+ <form id="form1" style="text-align:center" runat="server">
+ <div>
+ <asp:Label ID="lbl_LOP" runat="server" Font-Bold="True" Text="List
+Of Players"></asp:Label>
+ <br />
+ <br />
+ <asp:ListBox ID="lb_players" runat="server">
+ <asp:ListItem>Sachin Tendulkar</asp:ListItem>
+ <asp:ListItem>M S Dhoni</asp:ListItem>
+ <asp:ListItem>Rohit Sharma</asp:ListItem>
+ <asp:ListItem>Virat Kohli</asp:ListItem>
+ <asp:ListItem>Yuvraj Singh</asp:ListItem>
+ <asp:ListItem>R Ashwin</asp:ListItem>
+ <asp:ListItem>Rishab Pant</asp:ListItem>
+ <asp:ListItem>Mohammad Shami</asp:ListItem>
+ <asp:ListItem>K L Rahul </asp:ListItem>
+ <asp:ListItem>Suryakumar Yadav</asp:ListItem>
+ <asp:ListItem>Jasprit Bumrah</asp:ListItem>
+ <asp:ListItem>Kuldeep Yadav</asp:ListItem>
+ <asp:ListItem>Tilak Verma </asp:ListItem>
+ <asp:ListItem>Suresh Raina</asp:ListItem>
+ <asp:ListItem>Ravindra Jadeja </asp:ListItem>
+ <asp:ListItem>Sikhar Dhawan</asp:ListItem>
+ <asp:ListItem>Shubhman Gill</asp:ListItem>
+ <asp:ListItem>Harbhajan </asp:ListItem>
+ <asp:ListItem>Ishan Kishan </asp:ListItem>
+ <asp:ListItem>Arshdeep Singh</asp:ListItem>
+ <asp:ListItem>Shivam Dubey</asp:ListItem>
+ <asp:ListItem>Sanju Samson</asp:ListItem>
+ <asp:ListItem>Malinga </asp:ListItem>
+ <asp:ListItem>Chris Gayle</asp:ListItem>
+ <asp:ListItem>David Warner</asp:ListItem>
+ <asp:ListItem>Steve Smith</asp:ListItem>
+ <asp:ListItem>Shane Watson</asp:ListItem>
+ </asp:ListBox>
+ <div class="t1">
+ <br />
+ <asp:Label ID="lbl_t1" runat="server" Text="TEAM No
+1"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbls1" runat="server" Text="Selected
+Players"></asp:Label>
+ <br />
+ <asp:DropDownList ID="ddlt1" runat="server">
+ </asp:DropDownList>
+ <br />
+ <br />
+ <asp:Button ID="btnt1_add" runat="server" Text="ADD"
+OnClick="btnt1_add_Click" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Button ID="btnt1_del" runat="server" Text="DELETE"
+OnClick="btnt1_del_Click" />
+ <br />
+ <br />
+ <asp:Label ID="lbl_res1" runat="server"></asp:Label>
+ <br />
+ </div>
+ <div class="t2">
+ <br />
+ <asp:Label ID="Lbl_t2" runat="server" Text="TEAM No
+2"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbls2" runat="server" Text="Selected
+Players"></asp:Label>
+ <br />
+ <asp:DropDownList ID="ddlt2" runat="server">
+ </asp:DropDownList>
+ <br />
+ <br />
+ <asp:Button ID="btnt2_add" runat="server" Text="ADD"
+OnClick="btnt2_add_Click" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Button ID="btnt2_del" runat="server" Text="DELETE"
+OnClick="btnt2_del_Click" />
+ <br />
+ <br />
+ <asp:Label ID="lbl_res2" runat="server"></asp:Label>
+ </div>
+ </div>
+ </form>
+</body>
+</html>
+Cricket.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac7
+{
+ public partial class cricket : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void btnt1_add_Click(object sender, EventArgs e)
+ {
+ btnt1_add.Enabled = ddlt1.Items.Count < 11;
+ if(!btnt1_add.Enabled)
+ {
+ lbl_res1.Text = "Team is Full";
+ }
+ else
+ {
+ btnt1_add.Enabled = true;
+ lbl_res1.Text = "";
+ }
+ String n = lb_players.SelectedValue;
+ if(n.Length >= 1)
+ {
+ ddlt1.Items.Add(n);
+ lb_players.Items.Remove(n);
+ }
+ }
+ protected void btnt1_del_Click(object sender, EventArgs e)
+ {
+ String n = ddlt1.SelectedValue;
+ if(n.Length >= 1)
+ {
+ ddlt1.Items.Remove(n);
+ lb_players.Items.Add(n);
+ }
+ btnt1_add.Enabled = ddlt1.Items.Count < 12;
+ if (!btnt1_add.Enabled)
+ {
+ lbl_res1.Text = "Team is Full";
+ }
+ else
+ {
+ btnt1_add.Enabled= true;
+ lbl_res1.Text = "";
+ }
+ }
+ protected void btnt2_del_Click(object sender, EventArgs e)
+ {
+ String n = ddlt2.SelectedValue;
+ if (n.Length >= 1)
+ {
+ ddlt2.Items.Remove(n);
+ lb_players.Items.Add(n);
+ }
+ btnt2_add.Enabled = ddlt2.Items.Count < 12;
+ if (!btnt2_add.Enabled)
+ {
+ lbl_res2.Text = "Team is Full";
+ }
+ else
+ {
+ btnt1_add.Enabled = true;
+ lbl_res2.Text = "";
+ }
+ }
+ protected void btnt2_add_Click(object sender, EventArgs e)
+ {
+ btnt2_add.Enabled = ddlt2.Items.Count < 11;
+ if (!btnt2_add.Enabled)
+ {
+ lbl_res2.Text = "Team is Full";
+ }
+ else
+ {
+ btnt1_add.Enabled = true;
+ lbl_res2.Text = "";
+ }
+ String n = lb_players.SelectedValue;
+ if (n.Length >= 1)
+ {
+ ddlt2.Items.Add(n);
+ lb_players.Items.Remove(n);
+ }
+ }
+ }
+}

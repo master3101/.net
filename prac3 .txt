@@ -1,0 +1,121 @@
+pract 4 
+
+HomeLoan.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home Loan.aspx.cs"
+Inherits="pract4.Home_Loan" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title>Home Loan</title>
+ <style>
+ *{
+ background-color:lightsteelblue;
+ }
+ h1{
+ text-align:center;
+ }
+ .input {
+ width: 178px;
+ }
+ #form1{
+ text-align:center;
+ }
+ </style>
+</head>
+<body>
+ <h1>Home Loan Application</h1>
+ <form id="form1" runat="server">
+ <asp:Label ID="lblamt" Font-Bold="true" runat="server" ></b>ENTER LOAN
+AMOUNT</asp:Label>
+ <asp:TextBox ID="txtamt" runat="server" style="margin-left:
+18px"></asp:TextBox><br />
+ <asp:Label ID="lblyear" Font-Bold="true" runat="server" Text="SELECT
+YEARS"></asp:Label>
+ <asp:DropDownList ID="ddlyear" runat="server" style="margin-left: 12px">
+ <asp:ListItem>5</asp:ListItem>
+ <asp:ListItem>10</asp:ListItem>
+ <asp:ListItem>15</asp:ListItem>
+ </asp:DropDownList><br /><br />
+ <asp:Button ID="btncal" runat="server" Text="CALCULATE" OnClick="btncal_Click"
+/><br /><br /><br />
+ <asp:Label ID="lblrol" runat="server" Font-Bold="true" Visible="false" Text="RATE
+OF LOAN :"></asp:Label>
+ <asp:Label ID="lblrans" runat="server" style="margin-left: 14px"></asp:Label><br
+/>
+ <asp:Label ID="lblemi" runat="server" Font-Bold="true" Visible="false" Text="EMI
+:"></asp:Label>
+ <asp:Label ID="lblemians" runat="server" style="margin-left: 17px"></asp:Label><br
+/>
+ <asp:Label ID="lblenq" runat="server" Font-Bold="true" Visible="false" Text="TOTAL
+NO OF ENQUERIES :"></asp:Label>
+ <asp:Label ID="lblans" runat="server" Visible="false" style="margin-left:
+14px"></asp:Label><br />
+ </form>
+</body>
+</html>
+
+
+
+HomeLoan.aspx.cs
+using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace pract4
+{
+ public partial class Home_Loan : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ object a=(Application["counter"]=(int)Application["counter"]+1);
+ lblans.Text = a.ToString();
+ }
+ protected void txtenq_TextChanged(object sender, EventArgs e)
+ {
+ }
+ protected void btncal_Click(object sender, EventArgs e)
+ {
+ lblrol.Visible = true;
+ lblemi.Visible = true;
+ lblenq.Visible = true;
+ lblans.Visible = true;
+ float amt=Convert.ToInt32(txtamt.Text);
+ int time=Convert.ToInt32(ddlyear.Text);
+ float rate =
+Convert.ToInt32(WebConfigurationManager.AppSettings.Get(ddlyear.Text));
+ lblrans.Text = Convert.ToString(rate);
+ rate = rate / (12 * 100);
+ time= time * 12;
+ float emi = (float)((amt * rate * Math.Pow(rate + 1, time)) / (Math.Pow(1 +
+rate, time) - 1));
+ lblemians.Text = Convert.ToString(emi);
+ }
+ }
+}
+
+WEB.CONFIG
+<configuration>
+<appSettings>
+ <add key="5" value="5"/>
+ <add key="10" value="7"/>
+ <add key="15" value="9"/>
+</appSettings>
+</configuration>
+Global.asax.cs
+namespace pract4
+{
+ public class Global : HttpApplication
+ {
+ void Application_Start(object sender, EventArgs e)
+ {
+ // Code that runs on application startup
+ Application["counter"]=0;
+ RouteConfig.RegisterRoutes(RouteTable.Routes);
+ BundleConfig.RegisterBundles(BundleTable.Bundles);
+ }
+ }
+}

@@ -1,0 +1,256 @@
+prac 10 
+
+ticket.aspx:
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ticket.aspx.cs"
+Inherits="Prac10.ticket" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <center>
+ <form id="form1" runat="server">
+ <div>
+ &nbsp;<asp:Label ID="lbl_Title" runat="server" Font-Bold="True" FontNames="Nunito" Font-Size="X-Large" Text="Movie Ticket Enquiry"></asp:Label>
+ <br />
+ <br />
+ <asp:Label ID="lbl_sel" runat="server" Font-Bold="True" FontItalic="False" Font-Names="Nunito" Text="Select City:"></asp:Label>
+ <br />
+ <asp:RadioButtonList ID="rbl_loc" runat="server" AutoPostBack="True"
+OnSelectedIndexChanged="rbl_loc_SelectedIndexChanged">
+ <asp:ListItem>Mumbai</asp:ListItem>
+ <asp:ListItem>Pune</asp:ListItem>
+ </asp:RadioButtonList>
+ <br />
+ <asp:Label ID="lbl_selT" runat="server" Font-Bold="True" FontNames="Nunito" Text="Select Theatre"></asp:Label>
+ <br />
+ <asp:DropDownList ID="ddl_theatre" runat="server" AutoPostBack="True"
+OnSelectedIndexChanged="ddl_theatre_SelectedIndexChanged">
+ <asp:ListItem></asp:ListItem>
+ <asp:ListItem>Cinepolis-Bhandup</asp:ListItem>
+ <asp:ListItem>INOX - Mulund</asp:ListItem>
+ <asp:ListItem>PVR - Thane</asp:ListItem>
+ <asp:ListItem>INOX - Pune</asp:ListItem>
+ <asp:ListItem>Victory Theatre</asp:ListItem>
+ <asp:ListItem> Neelayam Theatre</asp:ListItem>
+ </asp:DropDownList>
+ <br />
+ <br />
+ <br />
+ <asp:Table ID="result_Table" runat="server" BorderStyle="Solid"
+CellPadding="2" CellSpacing="2" GridLines="Both">
+ </asp:Table>
+ <br />
+ <br />
+ <asp:AdRotator ID="AdRotator1" runat="server"
+AdvertisementFile="~/XMLFile1.xml"/>
+ <br />
+ </div>
+ </form>
+ </center>
+</body>
+</html>
+
+
+
+
+ticket.aspx.cs:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Prac10
+{
+ public partial class ticket : System.Web.UI.Page
+ {
+ TableCell c1 = new TableCell();
+ TableCell c2 = new TableCell();
+ TableCell c3 = new TableCell();
+ TableCell c4 = new TableCell();
+ TableCell c5 = new TableCell();
+ TableCell c6 = new TableCell();
+ TableCell c7 = new TableCell();
+ TableCell c8 = new TableCell();
+ TableRow r1 = new TableRow();
+ TableRow r2 = new TableRow();
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void ddl_theatre_SelectedIndexChanged(object sender, EventArgs e)
+ {
+ result_Table.Controls.Clear();
+ if(ddl_theatre.Text == "Cinepolis - Bhandup"){
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Hanu-Man";
+ c7.Text = "KGF";
+ c8.Text = "Kantaara";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ else if (ddl_theatre.Text == "INOX - Mulund")
+ {
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Fast and Furious-7";
+ c7.Text = "Cars 4";
+ c8.Text = "Golmaal Again";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ else if (ddl_theatre.Text == "PVR - Thane")
+ {
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Fast and Furious-8";
+ c7.Text = "Cars 2";
+ c8.Text = "Golmaal 3";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ else if (ddl_theatre.Text == "PVR - Pune")
+ {
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "DDLJ";
+ c7.Text = "LEO";
+ c8.Text = "Jailer";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ else if (ddl_theatre.Text == "Victory Theatre")
+ {
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Vikram";
+ c7.Text = "Kaithi";
+ c8.Text = "Master";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ else if (ddl_theatre.Text == "Neelayam Theatre")
+ {
+ c1.Text = "Timings";
+ c2.Text = "12:00 PM";
+ c3.Text = "03:00 PM";
+ c4.Text = "07:00 PM";
+ result_Table.Controls.Add(r1);
+ r1.Controls.Add(c1);
+ r1.Controls.Add(c2);
+ r1.Controls.Add(c3);
+ r1.Controls.Add(c4);
+ c5.Text = "Movie Name";
+ c6.Text = "Guntur Kaaram";
+ c7.Text = "Alavaikunthapuram";
+ c8.Text = "Salaar";
+ result_Table.Controls.Add(r2);
+ r2.Controls.Add(c5);
+ r2.Controls.Add(c6);
+ r2.Controls.Add(c7);
+ r2.Controls.Add(c8);
+ }
+ }
+ protected void rbl_loc_SelectedIndexChanged(object sender, EventArgs e)
+ {
+ if(rbl_loc.SelectedValue == "Mumbai")
+ {
+ ddl_theatre.Items.Clear();
+ ddl_theatre.Items.Add("Cinepolis - Bhandup");
+ ddl_theatre.Items.Add("INOX - Mulund");
+ ddl_theatre.Items.Add("PVR - Thane");
+ }
+ else
+ {
+ ddl_theatre.Items.Clear();
+ ddl_theatre.Items.Add("PVR - Pune");
+ ddl_theatre.Items.Add("Victory Theatre");
+ ddl_theatre.Items.Add("Neelayam Theatre");
+ }
+ }
+ }
+}
+
+
+XMLFile1.xml:
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+<Ad>
+<ImageUrl>ad1.jpg</ImageUrl>
+<NavigateUrl>https://www.bmw.in</NavigateUrl>
+<AlternateText>Cars Image</AlternateText>
+<Impressions>1</Impressions>
+<Keyword>Cars</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>ad2.jpg</ImageUrl>
+<NavigateUrl>https://www.mercedes-benz.co.in</NavigateUrl>
+<AlternateText>Cars Image</AlternateText>
+<Impressions>1</Impressions>
+<Keyword>Cars</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>ad3.jpg</ImageUrl>
+<NavigateUrl>https://www.dodge.com</NavigateUrl>
+<AlternateText>Cars Image</AlternateText>
+<Impressions>1</Impressions>
+<Keyword>Cars</Keyword>
+</Ad>
+</Advertisements>

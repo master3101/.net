@@ -1,0 +1,155 @@
+pract 5 
+
+
+Question:
+A Software company wants to conduct placement for graduate in Mumbai
+and pune.
+Design a webForm to input student details such as name,course_name
+that is CS,IT,Physics,Maths using radio button marks of SSC,HSC,FY
+and SY along with year of passing using textboxes and location such
+as Mumbai or pune using dropdownlist.The student is shortlisted only
+if HE/She has minimum 60% in SSC or HSC, FY and SY avg should be
+minimum 55% and they should not be any gap in education .When
+student click on register button the data is submitted to ASP.NET
+page which informs the student whether He or She qualify and place
+of interview in Mumbai or pune as given by the student
+Design File:
+<%@ Page Language="C#" AutoEventWireup="true"
+CodeBehind="WebForm1.aspx.cs" Inherits="placement_form.WebForm1" %>
+A Software
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Label ID="lblname" runat="server" Text="Enter Your
+Name:"></asp:Label>
+&nbsp;&nbsp;
+ <asp:TextBox ID="txtname" runat="server"></asp:TextBox>
+ <br />
+ <br />
+ <asp:Label ID="lblcourse" runat="server" Text="Select
+Your Course:"></asp:Label>
+ <br />
+ <asp:RadioButtonList ID="rdlcourse" runat="server">
+ <asp:ListItem>B.Sc CS</asp:ListItem>
+ <asp:ListItem>B.Sc IT</asp:ListItem>
+ <asp:ListItem>B.Sc Physics</asp:ListItem>
+ <asp:ListItem>B.Sc Maths</asp:ListItem>
+ </asp:RadioButtonList>
+ <br />
+ <asp:Label ID="lblmrks" runat="server" Text="Marks and
+year of passing"></asp:Label>
+ <br />
+ <asp:Label ID="lblssc" runat="server"
+Text="SSC"></asp:Label>
+&nbsp;
+ <asp:TextBox ID="txtssc" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Label ID="lblsyear" runat="server" Text="Year of
+Passing:"></asp:Label>
+&nbsp;<asp:TextBox ID="txtsyear" runat="server"></asp:TextBox>
+ <br />
+ <br />
+ <asp:Label ID="lblhsc" runat="server"
+Text="HSC"></asp:Label>
+&nbsp;
+ <asp:TextBox ID="txthsc" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Label ID="lblhyear" runat="server" Text="Year of
+Passing:"></asp:Label>
+&nbsp;<asp:TextBox ID="txthyear" runat="server"></asp:TextBox>
+ <br />
+ <br />
+ <asp:Label ID="lblfy" runat="server"
+Text="FY"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:TextBox ID="txtfy" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Label ID="lblfyyear" runat="server" Text="Year of
+Passing:"></asp:Label>
+&nbsp;<asp:TextBox ID="txtfyyear" runat="server"></asp:TextBox>
+ <br />
+ <br />
+ <asp:Label ID="lblsy" runat="server"
+Text="SY"></asp:Label>
+&nbsp;&nbsp;
+ <asp:TextBox ID="txtsy" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Label ID="lblsyyear" runat="server" Text="Year of
+Passing:"></asp:Label>
+&nbsp;
+ <asp:TextBox ID="txtsyyear"
+runat="server"></asp:TextBox>
+ <br />
+ <br />
+ <br />
+ <asp:Label ID="Label1" runat="server"
+Text="Location:"></asp:Label>
+&nbsp;&nbsp;
+ <asp:DropDownList ID="ddlocate" runat="server">
+ <asp:ListItem></asp:ListItem>
+ <asp:ListItem>Mumbai</asp:ListItem>
+ <asp:ListItem>Pune</asp:ListItem>
+ </asp:DropDownList>
+ <br />
+ <br />
+ <asp:Button ID="btnregis" runat="server" FontBold="True" Font-Names="Arial Black" ForeColor="Red"
+OnClick="btnregis_Click" Text="Register" />
+ <br />
+ <br />
+ <asp:Label ID="lblresult" runat="server" Height="150px"
+Width="300px"></asp:Label>
+ <br />
+ </div>
+ </form>
+</body>
+</html>
+--------------------------------------------------------------------
+------------------
+.aspx.cs file:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace placement_form
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void btnregis_Click(object sender, EventArgs e)
+ {
+ string nm = txtname.Text;
+ double m1 = Convert.ToDouble(txtssc.Text);
+ double m2 = Convert.ToDouble(txthsc.Text);
+ double m3 = Convert.ToDouble(txtfy.Text);
+ double m4 = Convert.ToDouble(txtsy.Text);
+ int y1 = Convert.ToInt32(txtsyear.Text);
+ int y2 = Convert.ToInt32(txthyear.Text);
+ int y3 = Convert.ToInt32(txtfyyear.Text);
+ int y4 = Convert.ToInt32(txtsyyear.Text);
+ if(((m1>=60.00 && m2>=60.00)&&(m3>=55.00 &&
+m4>=55.00))&&((y2-y1 == 2 && y3-y2 == 1 && y4-y3 == 1)))
+ {
+ lblresult.Text = "CONGRATS YOU ARE SELECTED!!!!
+<br/>" + "Name: " + nm + "<br/> Your Course is:" + lblresult.Text +
+"<br/>Your Interview is at: " + ddlocate.SelectedValue;
+ }
+ else
+ {
+ lblresult.Text = "You didn't Qualify";
+ }
+ }
+ }
+} 
